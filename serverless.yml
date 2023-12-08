@@ -1,0 +1,22 @@
+service: email-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-south-1
+  environment:
+    SMTP_HOST: smtp.gmail.com
+    SMTP_USERNAME: hutechdonationfundation@gmail.com
+    SMTP_PASSWORD: ojthtajuveeyrfuv
+    FROM_EMAIL: hutechdonationfundation@gmail.com
+
+functions:
+  sendEmail:
+    handler: handler.sendEmail
+    events:
+      - http:
+          path: send-email
+          method: post
+          cors: true
+plugins:
+  - serverless-offline
